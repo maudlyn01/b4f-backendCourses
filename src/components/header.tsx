@@ -1,10 +1,11 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
+
+import { useSession } from "../contexts/session.tsx";
 
 const linkStyles = "hover:text-cyan-300";
 
 export const Header = () => {
-  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
+  const { isUserAuthenticated, toggleAuthentication } = useSession();
 
   return (
     <header className="bg-gradient-to-r from-cyan-500 to-cyan-900 px-20 py-10 text-white flex justify-between">
@@ -51,7 +52,7 @@ export const Header = () => {
         </nav>
         <button
           className="bg-white rounded-md text-cyan-600 px-4 py-2 font-medium"
-          onClick={() => setIsUserAuthenticated(!isUserAuthenticated)}
+          onClick={() => toggleAuthentication()}
         >
           {isUserAuthenticated ? "Terminar Sessão" : "Iniciar Sessão"}
         </button>
